@@ -4,10 +4,10 @@ WEB322 – Assignment 02
 I declare that this assignment is my own work in accordance with Seneca Academic Policy. No part * of this assignment has
 been copied manually or electronically from any other source (including 3rd party web sites) or distributed to other students.
 Name: Alejandra Pereira Leon
-Student ID: ______________
+Student ID: 139273221
 Date: 10/09/2024
 Cyclic Web App URL: _______________________________________________________
-GitHub Repository URL: ______________________________________________________
+GitHub Repository URL: https://github.com/AlejandraPereira/web322-app.git
 ********************************************************************************/
 
 // server.js
@@ -47,7 +47,7 @@ app.get('/items', (req, res) => {
     storeService.getAllItems()
     .then(data => {
         res.json(data); // Send items data as a JSON response
-       // res.send(data);
+       
     })
     .catch(error => {
         console.log("Error retrieving items:", error);
@@ -59,7 +59,7 @@ app.get('/categories', (req, res) => {
     storeService.getCategories()
     .then(data => {
         res.json(data); // Send items data as a JSON response
-        // res.send(data);    
+       
     })
     .catch(error => {
         console.log("Error retrieving categories:", error);
@@ -68,7 +68,7 @@ app.get('/categories', (req, res) => {
 
 // Route for error404
 app.use((req, res) => { // no matching routes
-    res.status(404).sendFile(path.join(__dirname, 'views', 'error404.jpg')); // Custom 404 message
+    res.sendFile(path.join(__dirname, 'views', 'error404.jpg')); // Custom 404 message
 });
 
 // Set the server to listen on the specified port
