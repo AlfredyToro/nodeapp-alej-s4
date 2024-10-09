@@ -1,15 +1,4 @@
 
-/*********************************************************************************
-WEB322 – Assignment 02
-I declare that this assignment is my own work in accordance with Seneca Academic Policy. No part * of this assignment has
-been copied manually or electronically from any other source (including 3rd party web sites) or distributed to other students.
-Name: Alejandra Pereira Leon
-Student ID: 139273221
-Date: 10/09/2024
-Cyclic Web App URL: _______________________________________________________
-GitHub Repository URL: https://github.com/AlejandraPereira/web322-app.git
-********************************************************************************/
-
 // server.js
 const express = require('express'); // Import the express module
 const path = require('path'); // Import path module for handling file paths
