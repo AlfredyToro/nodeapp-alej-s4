@@ -69,6 +69,9 @@ module.exports = {
     getPublishedItems,
     getCategories,
     addItem,
+    getItemsByCategory,
+    getItemsByMinDate,
+    getItemById
 };
 
 function addItem(itemData){
