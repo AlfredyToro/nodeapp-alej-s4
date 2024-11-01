@@ -1,3 +1,4 @@
+const { rejects } = require("assert");
 const fs = require("fs");
 
 const items = [];
@@ -66,5 +67,61 @@ module.exports = {
     initialize, 
     getAllItems,
     getPublishedItems,
-    getCategories
+    getCategories,
+    addItem,
 };
+
+function addItem(itemData){
+    return new Promise((resolve, reject)=>{
+
+        if (itemData.published === undefined) { //check if the itemData is undefined
+            itemData.published = false;  //false = undefined
+        } else {
+            itemData.published = true; // true if is defined
+        }
+        itemData.id = itemData.length+1; // set the id to the length of the items array plus 1
+        items.push(itemData); //add the itemData  to the array
+        resolve(itemData); //resolve the promise
+
+    });
+}
+
+function getItemsByCategory(category){
+    return new Promise((resolve,reject)=>{
+
+        // find items that match the specified category
+        const matchingItems = items.filter(item => item.category === parseInt(category, 10));
+
+        // Check if any matching items were found
+        if (matchingItems.length === 0) {
+            reject("No results returned"); // If no matching items were found, reject the promise
+        } else {
+            resolve(matchingItems);   // If matching items were found, resolve the promise
+        }
+    });
+}
+
+function getItemsByMinDate(minDateStr) {
+    return new Promise((resolve, reject) => {
+        // find items whose postDate is greater than or equal to minDateStr
+        const matchingItems = items.filter(item => new Date(item.postDate) >= new Date(minDateStr));
+        // Check if any matching items were found
+        if (matchingItems.length === 0) {
+            reject("No results returned"); // If no matching items were found, reject the promise
+        } else {
+            resolve(matchingItems);   // If matching items were found, resolve the promise
+        }
+    });
+}
+
+function getItemById(id) {
+    return new Promise((resolve, reject) => {
+        // Find the item with the matching id
+        const foundItem = items.find(item => item.id === id);
+        if (foundItem) { // Check if an item was found
+            resolve(foundItem); // resolve the promise 
+        } else {
+            reject("No result returned"); // reject the promis
+        }
+    });
+}
