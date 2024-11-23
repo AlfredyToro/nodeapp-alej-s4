@@ -125,7 +125,7 @@ function getItemsByMinDate(minDateStr) {
 function getItemById(id) {
     return new Promise((resolve, reject) => {
         // Find the item with the matching id
-        const foundItem = items.find(item => item.id === parseInt(id, 10));
+        const foundItem = items.find(item => item.id === parseInt(id, 10)); //// Converts and compares item as an integer.
         if (foundItem) { // Check if an item was found
             resolve(foundItem); // resolve the promise 
         } else {
@@ -136,19 +136,16 @@ function getItemById(id) {
 
 function getPublishedItemsByCategory(category) {
     return new Promise((resolve, reject) => {
-        // Si la categoría es inválida o vacía
+        // if category is empty or invalid
         if (!category) {
             return reject("Category is invalid or empty");
         }
-
         const publishedItemsByCategory = items.filter(
-            item => item.published === true && item.category === parseInt(category, 10)
+            item => item.published === true && item.category === parseInt(category, 10) //Converts and compares category as an integer.
         );
-
         if (publishedItemsByCategory.length === 0) {
             return reject("No results returned for the specified category");
         }
-
         resolve(publishedItemsByCategory);
     });
 }
