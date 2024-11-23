@@ -46,7 +46,7 @@ function getAllItems(){
 
 function getPublishedItems(){
     return new Promise((resolve,reject)=>{
-        const publishedItems = items.filter(item => item.published); // Filter the items only those that are published
+        const publishedItems = items.filter(item => item.published=== true); // Filter the items only those that are published
         if(items.length == 0){ // If the length of the array is 0
             return reject("No results returned"); // call reject
         }
@@ -71,7 +71,8 @@ module.exports = {
     addItem,
     getItemsByCategory,
     getItemsByMinDate,
-    getItemById
+    getItemById,
+    getPublishedItemsByCategory
 };
 
 function addItem(itemData){
@@ -83,6 +84,10 @@ function addItem(itemData){
             itemData.published = true; // true if is defined
         }
         itemData.id = itemData.length+1; // set the id to the length of the items array plus 1
+       
+        const currentDate = new Date();
+        itemData.postDate = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`;
+
         items.push(itemData); //add the itemData  to the array
         resolve(itemData); //resolve the promise
 
@@ -120,7 +125,7 @@ function getItemsByMinDate(minDateStr) {
 function getItemById(id) {
     return new Promise((resolve, reject) => {
         // Find the item with the matching id
-        const foundItem = items.find(item => item.id === id);
+        const foundItem = items.find(item => item.id === parseInt(id, 10));
         if (foundItem) { // Check if an item was found
             resolve(foundItem); // resolve the promise 
         } else {
@@ -128,3 +133,24 @@ function getItemById(id) {
         }
     });
 }
+
+function getPublishedItemsByCategory(category) {
+    return new Promise((resolve, reject) => {
+        // Si la categoría es inválida o vacía
+        if (!category) {
+            return reject("Category is invalid or empty");
+        }
+
+        const publishedItemsByCategory = items.filter(
+            item => item.published === true && item.category === parseInt(category, 10)
+        );
+
+        if (publishedItemsByCategory.length === 0) {
+            return reject("No results returned for the specified category");
+        }
+
+        resolve(publishedItemsByCategory);
+    });
+}
+
+

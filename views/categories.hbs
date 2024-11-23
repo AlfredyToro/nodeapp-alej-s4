@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body><body>
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Categories</h2>
+            <hr />
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Category ID</th>
+                            <th>Category Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each categories}}
+                        <tr>
+                            <!--redirected to the category id for the category that was clicked -->
+                            <td><a href="/items?category={{this.id}}">{{this.id}}</a></td>
+                            <td><a href="/items?category={{this.id}}">{{this.category}}</a></td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+            {{#unless categories}}
+            <div class="col-md-12 text-center">
+                <strong>{{message}}</strong>
+            </div>
+            {{/unless}}
+        </div>
+    </div>
+</body>
+
+</body>
+</html>
+
+
+
+
+
+    
