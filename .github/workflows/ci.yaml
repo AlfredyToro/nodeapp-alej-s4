@@ -1,0 +1,26 @@
+name: Deploy to Azure Web App
+
+on:
+  push:
+    branches:
+      - main  # O la rama que estés utilizando para producción
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Check out the code from the repository
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    # Set up Node.js (si usas Node.js para construir tu aplicación)
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'  # Asegúrate de usar la versión que necesites
+
+    # Instalar dependencias (si usas npm o yarn)
+    - name: Install dependencies
+      run: |
+        npm install
