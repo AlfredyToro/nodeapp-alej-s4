@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "AlejandraPereira"
+    "url": "AT"
   },
   "keywords": [
     "web322",
@@ -19,7 +19,7 @@
     "web",
     "express"
   ],
-  "author": "Alejandra Pereira Leon",
+  "author": "AT",
   "license": "ISC",
   "dependencies": {
     "cloudinary": "^2.5.1",
